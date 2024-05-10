@@ -1,4 +1,12 @@
-<x-guest-layout>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
@@ -17,6 +25,21 @@
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="address" value="{{ __('Address') }}" />
+                <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autocomplete="username" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="contactno" value="{{ __('Contact No') }}" />
+                <x-input id="contactno" class="block mt-1 w-full" type="text" name="contactno" :value="old('contactno')" required autocomplete="username" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="dob" value="{{ __('Date of Birth') }}" />
+                <x-input id="dob" class="block mt-1 w-full" type="date" name="dob" :value="old('dob')" required autocomplete="username" />
             </div>
 
             <div class="mt-4">
@@ -58,3 +81,6 @@
         </form>
     </x-authentication-card>
 </x-guest-layout>
+
+</body>
+</html>
