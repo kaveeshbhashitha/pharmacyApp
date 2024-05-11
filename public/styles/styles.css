@@ -1,0 +1,79 @@
+body{
+    font-family: sans-serif;
+}
+a{
+    text-decoration: none;
+}
+.imagecontainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+.container{
+    display: flex;
+    justify-content: end;
+    margin: 30px 30px 0 0;
+}
+.abutton{
+    color: white;
+    background-color: rgb(70, 70, 70);
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    height: auto;
+    width: auto;
+    font-size: 15px;
+}
+.gap{
+    margin-left: 5px;
+}
+.centercontainer{
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.textimage{
+    margin-top: 100px;
+}
+.footer{
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+}
+.iconbox{
+    display: flex;
+    flex-wrap: wrap;
+}
+.facebook{
+    color: black;
+}
+.gaps{
+    margin-left: 12px;
+}
+.uploadcontainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+.headingtopic{
+    margin: 30px 0 0 30px;
+    font-size: 15px;
+}
+.topic{
+    font-weight: bold;
+    font-size: 30px;
+}
+.quotation{
+    display: flex;
+    justify-content: end;
+}
+.prescripquot{
+    display: flex;
+    justify-content: space-between;
+}
+.formbox{
+    margin-top: 20px;
+}
