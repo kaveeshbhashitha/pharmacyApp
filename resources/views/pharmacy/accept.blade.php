@@ -27,7 +27,7 @@
                             </div>
 
                             <div class="d-flex">
-                                <a href="" class="rounded bg-primary text-white p-1 mx-1">Add</a>
+                                <a href="" class="rounded bg-primary text-white p-1 mx-1">Deliver</a>
                                 <a href="" class="rounded bg-danger text-white p-1">Delete</a>
                             </div>
                         </div>

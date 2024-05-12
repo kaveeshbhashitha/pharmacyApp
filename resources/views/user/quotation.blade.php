@@ -51,6 +51,17 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            @if($presc->status == 'unpublish')
+                                <form method="POST" action="{{ route('presc.publish', $news->id) }}">
+                                    @csrf
+                                    <button type="submit" class="rounded bg-warning px-2 py-1 pb-[5px] pt-[6px] text-white">Accept</button>
+                                </form>
+                            @else
+                                <form method="POST" action="{{ route('presc.unpublish', $news->id) }}">
+                                    @csrf
+                                    <button type="submit" class="rounded bg-danger px-2 py-1 pb-[5px] pt-[6px] text-white">Decline</button>
+                                </form>
+                            @endif
                         </div>
                     </div>
                 </div>

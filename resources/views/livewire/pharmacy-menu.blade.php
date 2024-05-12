@@ -8,8 +8,11 @@
                     <x-nav-link href="{{ route('pharmacyQuotation') }}" :active="request()->routeIs('pharmacyQuotation')">
                         {{ __('See Quotations') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('addQuotation') }}" :active="request()->routeIs('addQuotation')">
-                        {{ __('Add Quotation') }}
+                    <x-nav-link href="{{ route('acceptQuotation') }}" :active="request()->routeIs('acceptQuotation')">
+                        {{ __('Accepted Quotation') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('declineQuotation') }}" :active="request()->routeIs('declineQuotation')">
+                        {{ __('Declined Quotation') }}
                     </x-nav-link>
                 </div>
             </div>
