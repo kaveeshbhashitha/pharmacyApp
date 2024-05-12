@@ -42,7 +42,7 @@
                     <input type="time" class="form-control" placeholder="First name" aria-label="First name">
                 </div>
                 <div class="col">
-                    <label for="exampleInputEmail1" class="form-label">Delivery time slot 2</label>
+                    <label for="exampleInputEmail1" class="form-label">Delivery time slot 2</label><span class="text-danger">*</span>
                     <input type="time" class="form-control" placeholder="Last name" aria-label="Last name">
                 </div>
             </div>
