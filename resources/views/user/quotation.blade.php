@@ -1,71 +1,64 @@
 <x-app-layout>
     <div class="py-12">
+        @php
+            $userEmail = Auth::user()->email;
+            $quotationController = app(\App\Http\Controllers\QuotationController::class);
+            $quotation = $quotationController->allQuotations($userEmail);
+        @endphp
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg my-2">
-                <div class="p-2 lg:p-2 bg-white border-b border-gray-200">
-                    <div class="quotation">
-                        <a href="{{ route('dashboard') }}" class="abutton">Upload Prescription</a>
-                    </div>
+            @if(session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
                 </div>
-            </div>
+            @endif 
+            @if(session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session()->get('error') }}
+                </div>
+            @endif
+            @if ($quotation)
+                <p>No quotation found.</p>
+            @else
+                @foreach ($quotation as $quotation)
+                    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg mb-2">
+                        <div class="p-2 lg:p-2 bg-white border-b border-gray-200">
+                            <div class="p-1">
+                                <div class="d-flex justify-content-between">
+                                        <div class="">
+                                            <p class="mx-2 boldtext">Name</p>
+                                            <h4 class="mx-2">{{ $quotation->pname }}</h4>
+                                            <p class="mx-2 boldtext">Email</p>
+                                            <h4 class="mx-2">{{ $quotation->pemail }}</h4>
+                                        </div>
+                                        
+                                        <div class="mx-3 direction">
+                                            <p class="boldtext">Drug data</p>
+                                            @php
+                                                $descriptions = explode('|', $quotation->description);
+                                            @endphp
+                                            @foreach ($descriptions as $description)
+                                                <h4 class="my-1">{{ $description }}</h4>
+                                            @endforeach
+                                        </div>
 
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="p-2 lg:p-2 bg-white border-b border-gray-200">
-                    <div class="p-1">
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex">
-                                <a href=""><img src="{{ asset('icons/image00.png') }}" alt="Icon"></a>
-                                <a href=""><img src="{{ asset('icons/image01.png') }}" alt="Icon" class="mx-1"></a>
-                                <a href=""><img src="{{ asset('icons/image02.png') }}" alt="Icon" class="mx-1"></a>
-                                <a href=""><img src="{{ asset('icons/image03.png') }}" alt="Icon" class="mx-1"></a>
-                                <a href=""><img src="{{ asset('icons/image04.png') }}" alt="Icon"></a>
+                                        <div class="mx-3 direction">
+                                            <p class="boldtext">Price for drugs</p>
+                                            {{ $quotation->total }}
+                                        </div>
+
+                                    <div class="d-flex">
+                                        <form action="{{ route('quotation.destroy', $quotation->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="rounded bg-secondary px-2 py-1 pb-[5px] pt-[6px] text-white mx-1">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="d-flex my-1">
-                                <h4 class="mx-2">Time 01</h4>
-                                <h4 class="mx-2">Time 02</h4>
-                            </div>
-                        </div>
-                        <div>
-                            <table class="table table-hover my-4 table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Drug name</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Amount/1</th>
-                                        <th scope="col">Amount</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>Otto</td>
-                                        <td>mdo</td>
-                                        <td>mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6" scope="row" class="text-end">Total</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            @if($presc->status == 'unpublish')
-                                <form method="POST" action="{{ route('presc.publish', $news->id) }}">
-                                    @csrf
-                                    <button type="submit" class="rounded bg-warning px-2 py-1 pb-[5px] pt-[6px] text-white">Accept</button>
-                                </form>
-                            @else
-                                <form method="POST" action="{{ route('presc.unpublish', $news->id) }}">
-                                    @csrf
-                                    <button type="submit" class="rounded bg-danger px-2 py-1 pb-[5px] pt-[6px] text-white">Decline</button>
-                                </form>
-                            @endif
                         </div>
                     </div>
-                </div>
-            </div>
+                @endforeach
+            @endif
         </div>
     </div>
 </x-app-layout>

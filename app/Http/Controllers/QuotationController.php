@@ -20,6 +20,12 @@ class QuotationController extends Controller
         return view('pharmacy.quotation')->with('quotation', $quotation);
     }
 
+    public function allQuotations(string $email)
+    {
+        $quotation = Quotation::where('pemail', $email)->get();
+        return $quotation;
+    }
+
     /**
      * Show the form for creating a new resource.
      */
