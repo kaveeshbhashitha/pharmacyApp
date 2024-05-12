@@ -28,8 +28,12 @@ Route::get('/pharmacy/prescription', [PharmacyController::class, 'pharmacyQuotat
 Route::get('/pharmacy/add', [PharmacyController::class, 'addQuotation'])->name('addQuotation');
 Route::get('/pharmacy/accept', [PharmacyController::class, 'acceptQuotation'])->name('acceptQuotation');
 Route::get('/pharmacy/decline', [PharmacyController::class, 'declineQuotation'])->name('declineQuotation');
+Route::get('/pharmacy/quotation', [QuotationController::class, 'seeIssedQuotation'])->name('seeIssedQuotation');
 
 //course
 Route::resource('/prescription', PharmacyController::class);
 Route::post('/prescription/{id}/accept', [PharmacyController::class, 'accept'])->name('prescription.accept');
 Route::post('/prescription/{id}/decline', [PharmacyController::class, 'decline'])->name('prescription.decline');
+
+//course
+Route::resource('/quotation', QuotationController::class);

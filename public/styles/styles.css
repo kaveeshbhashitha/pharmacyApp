@@ -77,3 +77,6 @@ a{
 .formbox{
     margin-top: 20px;
 }
+.boldtext{
+    font-weight: bold;
+}

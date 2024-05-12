@@ -17,7 +17,6 @@ class PharmacyController extends Controller
 
     public function seeAllPresc(){
         $prescription = Prescription::all();
-
         return $prescription;
     }
 

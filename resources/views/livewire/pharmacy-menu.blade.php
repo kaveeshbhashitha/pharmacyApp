@@ -6,6 +6,9 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('pharmacyQuotation') }}" :active="request()->routeIs('pharmacyQuotation')">
+                        {{ __('See Prescriptions') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('seeIssedQuotation') }}" :active="request()->routeIs('seeIssedQuotation')">
                         {{ __('See Quotations') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('acceptQuotation') }}" :active="request()->routeIs('acceptQuotation')">

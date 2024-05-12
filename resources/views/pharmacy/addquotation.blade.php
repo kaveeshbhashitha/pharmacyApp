@@ -8,6 +8,11 @@
 </head>
 <body>
 <x-pharmacy-layout>
+
+    @php
+        $drugs = app(\App\Http\Controllers\DrugController::class)->showDrugNames();
+    @endphp
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-2">
@@ -31,17 +36,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="right-side">
-                                <div class="quotation d-none justify-content-between">
-                                    <input type="text" class="form-control w-auto bg-white" name="pname" value="{{ $prescription-> pname }}">
-                                    <input type="text" class="form-control w-auto mx-1 bg-white" name="pemail" value="{{ $prescription->pemail }}">
-                                    <a href="{{ route('userQuotation') }}" class="abutton">See Quotations</a>
-                                </div>
-                                <div class="col-md-12 my-2">
-                                    <h2>Drugs List</h2>
-                                    <textarea id="insertedDrugs" class="form-control text-left my-2" rows="5" readonly></textarea>
-                                </div>
-                                <form id="addDrugForm">   
-                                    @if(session()->has('success'))
+                            <form method="post" action="{{ url('quotation') }}" enctype="multipart/form-data"> 
+                                @if(session()->has('success'))
                                         <div class="alert alert-success">
                                             {{ session()->get('success') }}
                                         </div>
@@ -52,18 +48,33 @@
                                         </div>
                                     @endif
                                     @csrf
+                                <div class="quotation d-none justify-content-between">
+                                    <input type="text" class="form-control w-auto bg-white" name="pname" value="{{ $prescription-> pname }}">
+                                    <input type="text" class="form-control w-auto mx-1 bg-white" name="pemail" value="{{ $prescription->pemail }}">
+                                    <a href="{{ route('userQuotation') }}" class="abutton">See Quotations</a>
+                                </div>
+                                <div class="col-md-12 my-2">
+                                    <h2 class="text-xl">Drugs List</h2>
+                                    <textarea id="insertedDrugs" name="description" class="form-control text-left my-2" rows="5"></textarea>
+                                    <input type="text" id="totalCharge" name="total" class="form-control text-end">
+                                </div>
                                         <div class="form-group my-2">
                                             <label for="drugName">Drug Name:</label>
-                                            <input type="text" class="form-control my-2" id="drugName" name="drugName">
+                                            <select type="text" class="form-control my-2 w-50" id="drugName" name="drugName">
+                                                @foreach ($drugs as $drugName)
+                                                    <option value="{{ $drugName -> drugname }}">{{ $drugName -> drugname }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group my-2">
                                             <label for="quantity">Quantity:</label>
-                                            <input type="number" class="form-control my-2" id="quantity" name="quantity">
+                                            <input type="number" class="form-control my-2 w-50" id="quantity" name="quantity">
                                         </div>
-                                        <button type="button" class="btn btn-primary my-2" id="addDrugBtn">Add Drug</button>
+                                        <button type="button" class="btn btn-primary my-2" id="addDrugBtn">Add</button>
                                     </div>
-                                </form>
-                            </div>
+                                    <button class="btn btn-secondary w-100" type="submit">Send quotation</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
             </div>
@@ -79,22 +90,42 @@
     }
 
     $(document).ready(function() {
+        var drugs = @json($drugs); // Convert the PHP array to JavaScript object
+
         // Handle adding drug
         $('#addDrugBtn').click(function() {
             var drugName = $('#drugName').val();
-            var quantity = $('#quantity').val();
-            var drugData = drugName + ' - ' + quantity;
+            var quantity = parseInt($('#quantity').val());
             
-            // Append drug data to the textarea
-            $('#insertedDrugs').val(function(_, val) {
-                return val + drugData + '\n';
-            });
+            // Find the selected drug in the drugs array
+            var selectedDrug = drugs.find(drug => drug.drugname === drugName);
 
-            // Reset form fields
-            $('#drugName').val('');
-            $('#quantity').val('');
+            if (selectedDrug) {
+                var pricePerOne = parseFloat(selectedDrug.priceperone);
+
+                // Calculate total charge
+                var totalCharge = pricePerOne * quantity;
+
+                // Construct the drug details string
+                var drugDetails = `Drug Name: ${drugName}, Quantity: ${quantity}, Charge: $${totalCharge.toFixed(2)}\n`;
+
+                // Update selected drugs textarea
+                var selectedDrugsText = $('#insertedDrugs').val();
+                $('#insertedDrugs').val(selectedDrugsText + drugDetails + '| ');
+
+                // Update total charge input
+                var currentTotalCharge = parseFloat($('#totalCharge').val().replace('$', '')) || 0;
+                var newTotalCharge = currentTotalCharge + totalCharge;
+                $('#totalCharge').val('Total charge = $' + newTotalCharge.toFixed(2));
+
+                // Reset form fields
+                $('#quantity').val('');
+            } else {
+                alert('Selected drug not found in the database.');
+            }
         });
     });
+
 </script>
 </body>
 </html>
