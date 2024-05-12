@@ -12,8 +12,13 @@ class PharmacyController extends Controller
      */
     public function pharmacyQuotation()
     {
-        $presc = Prescription::all();
-        return view('pharmacy.prescription')->with('presc', $presc);
+        return view('pharmacy.prescription');
+    }
+
+    public function seeAllPresc(){
+        $prescription = Prescription::all();
+
+        return $prescription;
     }
 
     public function acceptQuotation()
@@ -109,8 +114,8 @@ class PharmacyController extends Controller
      */
     public function edit(string $id)
     {
-        $staff = Prescription::findOrFail($id);
-        return view('admin.people.updatestaff', compact('staff'));
+        $prescription = Prescription::findOrFail($id);
+        return view('pharmacy.addquotation', compact('prescription'));
     }
 
     /**
@@ -173,6 +178,6 @@ class PharmacyController extends Controller
         $staff = Prescription::findOrFail($id);
         $staff->delete();
 
-        return redirect()->route('adminpeoplestaff')->with('success', 'Staff deleted successfully');
+        return redirect()->route('pharmacyQuotation')->with('success', 'Prescription deleted successfully');
     }
 }

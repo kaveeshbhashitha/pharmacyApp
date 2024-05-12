@@ -1,39 +1,66 @@
-<x-pharmacy-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg my-2">
-                <div class="p-2 lg:p-2 bg-white border-b border-gray-200">
-                    <div class="quotation">
-                        <a href="{{ route('addQuotation') }}" class="abutton">Test</a>
-                    </div>
-                </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bootstrap Div Division</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="left-side">
+                <h2>Inserted Drugs</h2>
+                <textarea id="insertedDrugs" class="form-control text-left" rows="5" readonly>
+                Drug Name           Quantity            Price
+                ------------------------------------------------
+                </textarea>
             </div>
-
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="p-2 lg:p-2 bg-white border-b border-gray-200">
-                    <div class="p-1">
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex my-1">
-                                <h4 class="mx-2">Time 01</h4>
-                                <h4 class="mx-2">Time 02</h4>
-                            </div>
-                            
-                            <div class="d-flex">
-                                <a href=""><img src="{{ asset('icons/image00.png') }}" alt="Icon"></a>
-                                <a href=""><img src="{{ asset('icons/image01.png') }}" alt="Icon" class="mx-1"></a>
-                                <a href=""><img src="{{ asset('icons/image02.png') }}" alt="Icon" class="mx-1"></a>
-                                <a href=""><img src="{{ asset('icons/image03.png') }}" alt="Icon" class="mx-1"></a>
-                                <a href=""><img src="{{ asset('icons/image04.png') }}" alt="Icon"></a>
-                            </div>
-
-                            <div class="d-flex">
-                                <a href="" class="rounded bg-primary text-white p-1 mx-1">Deliver</a>
-                                <a href="" class="rounded bg-danger text-white p-1">Delete</a>
-                            </div>
-                        </div>
+        </div>
+        <div class="col-md-6">
+            <div class="right-side">
+                <h2>Add Drug</h2>
+                <form id="addDrugForm">
+                    <div class="form-group">
+                        <label for="drugName">Drug Name:</label>
+                        <input type="text" class="form-control" id="drugName" name="drugName">
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" class="form-control" id="quantity" name="quantity">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="addDrugBtn">Add Drug</button>
+                </form>
             </div>
         </div>
     </div>
-</x-pharmacy-layout>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Handle adding drug
+        $('#addDrugBtn').click(function() {
+            var drugName = $('#drugName').val();
+            var quantity = $('#quantity').val();
+            var drugData = drugName + ' - ' + quantity;
+            
+            // Append drug data to the textarea
+            $('#insertedDrugs').val(function(_, val) {
+                return val + drugData + '\n';
+            });
+
+            // Reset form fields
+            $('#drugName').val('');
+            $('#quantity').val('');
+        });
+    });
+</script>
+
+</body>
+</html>
