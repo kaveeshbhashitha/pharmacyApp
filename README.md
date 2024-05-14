@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="public/icons/pharmacy.gif" width="400" alt="Company logo"></a></p>
+<p align="center"><img src="public/icons/pharmacy.gif" width="400" alt="Company logo"></p>
 
 <p align="center">
     User | Pharmacist
@@ -7,62 +7,87 @@
 <h1 align="center">PHP Practical Exam</h1>
 
 ## About the system
+# Medical Prescription Upload System
 
-### Used Technologies
-<p>Laravel(v) 11.0</p>
-<p>PHP (v) 8.2</p>
-<p>Laravel/Jetstream(v) 5.1</p>
-<p>Laravel/Livewire(v) 3.0</p>
-<p>phpmailer(v) 6.9</p>
-<p>Bootstrap(v) 5.0</p>
-<p>HTML 5 | CSS 3 | JS</p>
+This is a simple solution for medical prescription upload with two user levels: User and Pharmacy. It allows users to register, login, upload prescriptions, and receive quotations from pharmacies. Pharmacies can view uploaded prescriptions, prepare quotations, and receive email notifications about user responses.
 
-### Functionalities 
-#### User
-<p>1.Register as new user</p>
-<p>2.Login as exsisting user</p>
-<p>3.See user profile</p>
-<p>4.Change password and update profile</p>
-<p>5.Delete user account</p>
-<p>6.Upload prescription with Detils</p>
-<p>7.See received quotations</p>
-<p>8.Accept or decline quotation</p>
-<p>9.Receive an email about quotations</p>
+## Table of Contents
 
-#### Pharmacist
-<p>1.Login as exsisting user</p>
-<p>2.See user profile</p>
-<p>3.Change password and update profile</p>
-<p>4.Delete pharmacist account</p>
-<p>5.See user prescriptions</p>
-<p>6.See given quotations</p>
-<p>7.See accepted quotations</p>
-<p>8.See declined quotations</p>
-<p>9.Add quotation for given user prescription</p>
-<p>10. Delete prescription/quotation</p>
+- [Features](#features)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [Setup](#setup)
 
-## Learning Laravel
+## Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Part A: User
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. **User Registration**: Users can register with their name, email, address, contact number, and date of birth.
+2. **User Login**: Registered users can log in to their accounts securely.
+3. **Upload Prescription**: Users can upload prescriptions, including up to 5 images, notes, delivery address, and preferred delivery time slots (2-hour intervals).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Part B: Pharmacy
 
-## Laravel Sponsors
+1. **View Prescriptions**: Pharmacy users can view uploaded prescriptions from users.
+2. **Prepare Quotations**: Pharmacies can prepare quotations for uploaded prescriptions.
+3. **Send Quotation to User**: Quotations are sent to users and displayed in their accounts. Users receive email notifications about the quotations.
+4. **User Response**: Users can accept or reject quotations.
+5. **Notify Pharmacy**: Pharmacies receive notifications about user responses to quotations.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Usage
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. Access the application in your web browser.
+2. Register as a user or pharmacy user.
+3. Log in to your account.
+4. Upload prescriptions (users) or view prescriptions and prepare quotations (pharmacies).
+5. Send and respond to quotations.
 
-## Code of Conduct
+## Technologies Used
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- Laravel 11.0
+- MySQL
+- PHPMailer - for email notifications
+- Bootstrap - for frontend styling
 
-## Security Vulnerabilities
+## Pharmacist login credentials
+### User 01
+User's name: Thirasara Liyanage
+User's email: thirasara@gmail.com
+User's password: thirasa123
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### User 02
+User's name: Bhashitha Kaveesh
+User's email: kaveesh@gmail.com
+User's password: kaveesh123
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Setup
+1. Clone the repository / Extract zip file
+2. Navigate to the project directory or open project with proper IDE
+3. Install dependencies (Composer dependencies, Node modules, livewire compenents)
+
+### Composer dependencies
+```sh
+composer install
+```
+### Composer livewire dependencies
+```sh
+composer require laravel/jetstream
+```
+### NPM dependencies
+```sh
+npm install
+```
+### Run any necessary NPM
+```sh
+npm run dev
+```
+### Migrate database
+```sh
+php artisan migrate
+```
+
+### Run Application
+```sh
+php artisan serve
+```
