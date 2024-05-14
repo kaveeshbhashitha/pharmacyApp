@@ -87,7 +87,10 @@ npm run dev
 php artisan migrate
 ```
 <p>Otherwise export database file to mysql database.</p>
-<p>If you RUN the migrations and created tables using artisan commands, you must update the user role as [pharmacist]</p>
+<p>If you RUN the migrations and created tables using artisan commands, you must update the user role as  
+
+**pharmacist** 
+</p>
 
 #### Run Application
 ```sh
