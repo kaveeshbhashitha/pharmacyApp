@@ -21,21 +21,19 @@ Route::middleware([
 
 //main router for admin and user
 Route::get('/home', [HomeController::class, 'index']);
-
 Route::get('/user/quotation', [QuotationController::class, 'quotationsByUserEmail'])->name('userQuotation');
 
+//Routers to navigations
 Route::get('/pharmacy/prescription', [PharmacyController::class, 'pharmacyQuotation'])->name('pharmacyQuotation');
 Route::get('/pharmacy/add', [PharmacyController::class, 'addQuotation'])->name('addQuotation');
 Route::get('/pharmacy/accept', [QuotationController::class, 'acceptQuotation'])->name('acceptQuotation');
 Route::get('/pharmacy/decline', [QuotationController::class, 'declinQuotation'])->name('declinQuotation');
 Route::get('/pharmacy/quotation', [QuotationController::class, 'seeIssedQuotation'])->name('seeIssedQuotation');
 
-//course
+//Routers to handle Prescription operations 
 Route::resource('/prescription', PharmacyController::class);
-// Route::post('/prescription/{id}/accept', [PharmacyController::class, 'accept'])->name('prescription.accept');
-// Route::post('/prescription/{id}/decline', [PharmacyController::class, 'decline'])->name('prescription.decline');
 
-//course
+//Routers to handle Quotation operations
 Route::resource('/quotation', QuotationController::class);
 Route::post('/quotation/{id}/accept', [QuotationController::class, 'accept'])->name('quotation.accept');
 Route::post('/quotation/{id}/decline', [QuotationController::class, 'decline'])->name('quotation.decline');
