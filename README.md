@@ -5,11 +5,35 @@
 </p>
 
 <h1 align="center">PHP Practical Exam</h1>
-## About 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## About the system
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Used Technologies
+<p>Laravel(v) 11.0</p>
+<p>PHP (v) 8.2</p>
+<p>Laravel/Jetstream(v) 5.1</p>
+<p>Laravel/Livewire(v) 3.0</p>
+<p>phpmailer(v) 6.9</p>
+<p>Bootstrap(v) 5.0</p>
+<p>HTML 5 | CSS 3 | JS</p>
+
+### Functionalities 
+#### User
+<p>Register as new user</p>
+<p>Login as exsisting user</p>
+<p>See user profile</p>
+<p>Change password and update profile</p>
+<p>Delete user account</p>
+<p>Upload prescription with Detils</p>
+<p>See received quotations</p>
+<p>Accept or decline quotation</p>
+<p>Receive an email about quotations</p>
+
+#### Pharmacist
+<p>Login as exsisting user</p>
+<p>See user profile</p>
+<p>Change password and update profile</p>
+<p>Delete user account</p>
 
 ## Learning Laravel
 
