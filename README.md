@@ -134,7 +134,22 @@ php artisan serve
 ```
 ### System images examples for mail UIs
 #### Email for quotation
-[![Alt Text](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/email.png)](![link](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/email.png))
+[![Email](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/email.png)](![link](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/email.png))
 
 #### Home
-[![Alt Text](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/email.png)](![link](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/email.png))
+[![Home](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/front.png)](![link](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/front.png))
+
+#### User Registration
+[![User Registration](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/reg.png)](![link](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/reg.png))
+
+#### Add Prescription
+[![Add Prescription](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/addpresc.png)](![link](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/addpresc.png))
+
+#### See Received Quotation
+[![See Received Quotation](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/seequot.png)](![link](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/seequot.png))
+
+#### Add Quotation
+[![Add Quotation](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/addquotation.png)](![link](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/addquotation.png))
+
+#### See Given Quotation
+[![See Given Quotation](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/seequotation.png)](![link](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/seequotation.png))
