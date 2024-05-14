@@ -17,6 +17,7 @@ This is a simple solution for medical prescription upload with two user levels: 
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
 - [Setup](#setup)
+-[Images](#system-images-examples-for-uis)
 
 ## Features
 
@@ -132,7 +133,7 @@ INSERT INTO drugs (drugname, priceperone, quontity) VALUES
 ```sh
 php artisan serve
 ```
-### System images examples for mail UIs
+### System images examples for UIs
 #### Email for quotation
 [![Email](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/email.png)](![link](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/email.png))
 
