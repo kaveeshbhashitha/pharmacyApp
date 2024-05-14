@@ -70,24 +70,26 @@ User's password: kaveesh123
 ```sh
 composer install
 ```
-### Composer livewire dependencies
+#### Composer livewire dependencies
 ```sh
 composer require laravel/jetstream
 ```
-### NPM dependencies
+#### NPM dependencies
 ```sh
 npm install
 ```
-### Run any necessary NPM
+#### Run any necessary NPM
 ```sh
 npm run dev
 ```
-### Migrate database
+#### Migrate database
 ```sh
 php artisan migrate
 ```
+<p>Otherwise export database file to mysql database.</p>
+<p>If you RUN the migrations and created tables using artisan commands, you must update the user role as [pharmacist]</p>
 
-### Run Application
+#### Run Application
 ```sh
 php artisan serve
 ```
