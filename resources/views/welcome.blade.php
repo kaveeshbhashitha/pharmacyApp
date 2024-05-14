@@ -69,7 +69,7 @@
         </div>
             
         <div class="footer">
-            Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+            -  -  -  -  -  -  -  -  -  -  -  -
         </div>
     </body>
 </html>

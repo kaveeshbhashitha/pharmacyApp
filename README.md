@@ -132,5 +132,9 @@ INSERT INTO drugs (drugname, priceperone, quontity) VALUES
 ```sh
 php artisan serve
 ```
-### Email for quotation
+### System images examples for mail UIs
+#### Email for quotation
+[![Alt Text](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/email.png)](![link](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/email.png))
+
+#### Home
 [![Alt Text](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/email.png)](![link](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/email.png))
