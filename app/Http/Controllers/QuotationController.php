@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Quotation;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+use Illuminate\Support\Facades\Auth;
 
 class QuotationController extends Controller
 {
@@ -20,10 +24,21 @@ class QuotationController extends Controller
         return view('pharmacy.quotation')->with('quotation', $quotation);
     }
 
-    public function allQuotations(string $email)
+    public function acceptQuotation(){
+        $quotation = Quotation::where('status', 'accepted')->get();
+        return view('pharmacy.accept')->with('quotation', $quotation);
+    }
+
+    public function declinQuotation(){
+        $quotation = Quotation::where('status', 'declined')->get();
+        return view('pharmacy.declined')->with('quotation', $quotation);
+    }
+
+    public function quotationsByUserEmail()
     {
-        $quotation = Quotation::where('pemail', $email)->get();
-        return $quotation;
+        $userEmail = Auth::user()->email;
+        $quotations = Quotation::where('pemail', $userEmail)->get();
+        return view('user.quotation', compact('quotations'));
     }
 
     /**
@@ -42,10 +57,54 @@ class QuotationController extends Controller
         try {
             $requestdata = $request->all();
             Quotation::create($requestdata);
+    
+            // Call sendEmail function after successfully inserting data
+            $this->sendEmail($request);
+    
             return redirect()->route('pharmacyQuotation')->with('success', 'Quotation added successfully');
-
+    
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
+        }
+    }
+
+    public function sendEmail(Request $request)
+    {
+        // Validate the request data
+        if(empty($request->pname) || empty($request->pemail) || empty($request->total) || empty($request->description)) {
+            return redirect()->back()->with('error', 'Message could not be sent, All fields are required.');
+        }
+        
+        // Send email
+        $mail = new PHPMailer(true);
+        try {
+            //Server settings
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                
+            $mail->isSMTP();                                 
+            $mail->Host       = 'smtp.gmail.com';          
+            $mail->SMTPAuth   = true;                               
+            $mail->Username   = 'pharmaforjob@gmail.com';             
+            $mail->Password   = 'isvctupyckgeqdey';                     
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;           
+            $mail->Port       = 465; 
+
+            //Recipients
+            $mail->setFrom('pharmaforjob@gmail.com', 'PharmacyApp');
+            $mail->addAddress($request->pemail, $request->pname);
+
+            //Content
+            $mail->isHTML(true);
+            $mail->Subject = "ABC Pharmacy - We are providing new Breath to you.";
+            $mail->Body = "Name: {$request->pname}<br>Email: {$request->pemail}<br>Your Quotation:<br> {$request->description}<br>Total Charge: {$request->total}";
+
+            $mail->send();
+
+            return redirect()->back()->with('success', 'Email has been sent successfully!');
+
+        } 
+        catch (Exception $e) 
+        {
+            return redirect()->back()->with('error', "Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
         }
     }
 
@@ -82,5 +141,23 @@ class QuotationController extends Controller
         $quotation->delete();
 
         return redirect()->route('seeIssedQuotation')->with('success', 'Quotation deleted successfully');
+    }
+
+    public function accept($id)
+    {
+        $quotation = Quotation::findOrFail($id);
+        $quotation->status = 'accepted';
+        $quotation->save();
+
+        return redirect()->route('userQuotation')->with('success', 'Quotation accepted to deliver successfully');
+    }
+
+    public function decline($id)
+    {
+        $quotation = Quotation::findOrFail($id);
+        $quotation->status = 'declined';
+        $quotation->save();
+
+        return redirect()->route('userQuotation')->with('success', 'Quotation declined successfully');
     }
 }

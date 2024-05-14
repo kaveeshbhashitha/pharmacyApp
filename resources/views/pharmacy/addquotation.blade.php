@@ -107,7 +107,7 @@
                 var totalCharge = pricePerOne * quantity;
 
                 // Construct the drug details string
-                var drugDetails = `Drug Name: ${drugName}, Quantity: ${quantity}, Charge: $${totalCharge.toFixed(2)}\n`;
+                var drugDetails = `${drugName} : ${quantity} x ${pricePerOne} = $${totalCharge.toFixed(2)}\n`;
 
                 // Update selected drugs textarea
                 var selectedDrugsText = $('#insertedDrugs').val();

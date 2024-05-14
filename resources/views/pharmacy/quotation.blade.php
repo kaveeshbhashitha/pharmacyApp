@@ -19,6 +19,7 @@
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg mb-2">
                         <div class="p-2 lg:p-2 bg-white border-b border-gray-200">
                             <div class="p-1">
+                                <div class="d-flex p-2"><h4>Pending quotations issued at: </h4><h4 class="text-primary"> {{$quotation->created_at}}</h4></div>
                                 <div class="d-flex justify-content-between">
                                         <div class="">
                                             <p class="mx-2 boldtext">Name</p>
@@ -39,7 +40,7 @@
 
                                         <div class="mx-3 direction">
                                             <p class="boldtext">Price for drugs</p>
-                                            {{ $quotation->total }}
+                                            <p class="text-primary">{{ $quotation->total }}</p>
                                         </div>
 
                                     <div class="d-flex">

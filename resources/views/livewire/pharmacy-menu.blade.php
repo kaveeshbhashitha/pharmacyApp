@@ -14,7 +14,7 @@
                     <x-nav-link href="{{ route('acceptQuotation') }}" :active="request()->routeIs('acceptQuotation')">
                         {{ __('Accepted Quotation') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('declineQuotation') }}" :active="request()->routeIs('declineQuotation')">
+                    <x-nav-link href="{{ route('declinQuotation') }}" :active="request()->routeIs('declinQuotation')">
                         {{ __('Declined Quotation') }}
                     </x-nav-link>
                 </div>

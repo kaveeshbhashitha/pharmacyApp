@@ -1,10 +1,5 @@
 <x-app-layout>
     <div class="py-12">
-        @php
-            $userEmail = Auth::user()->email;
-            $quotationController = app(\App\Http\Controllers\QuotationController::class);
-            $quotation = $quotationController->allQuotations($userEmail);
-        @endphp
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if(session()->has('success'))
                 <div class="alert alert-success">
@@ -16,10 +11,10 @@
                     {{ session()->get('error') }}
                 </div>
             @endif
-            @if ($quotation)
+            @if ($quotations->isEmpty())
                 <p>No quotation found.</p>
             @else
-                @foreach ($quotation as $quotation)
+                @foreach ($quotations as $quotation)
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg mb-2">
                         <div class="p-2 lg:p-2 bg-white border-b border-gray-200">
                             <div class="p-1">
@@ -47,11 +42,29 @@
                                         </div>
 
                                     <div class="d-flex">
-                                        <form action="{{ route('quotation.destroy', $quotation->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="rounded bg-secondary px-2 py-1 pb-[5px] pt-[6px] text-white mx-1">Delete</button>
-                                        </form>
+                                        
+                                    </div>
+                                    <div class="flex justify-content-center">
+                                        @if($quotation->status == 'none')
+                                            <form method="POST" action="{{ route('quotation.accept', $quotation->id) }}" class="mx-1">
+                                                @csrf
+                                                <button type="submit" class="rounded bg-warning px-2 py-1 pb-[5px] pt-[6px] text-white">Accept</button>
+                                            </form>
+                                            <form method="POST" action="{{ route('quotation.decline', $quotation->id) }}">
+                                                @csrf
+                                                <button type="submit" class="rounded bg-danger px-2 py-1 pb-[5px] pt-[6px] text-white">Decline</button>
+                                            </form>
+                                        @elseif($quotation->status == 'accepted')
+                                            <form method="POST" action="{{ route('quotation.decline', $quotation->id) }}">
+                                                @csrf
+                                                <button type="submit" class="rounded bg-danger px-2 py-1 pb-[5px] pt-[6px] text-white">Decline</button>
+                                            </form>
+                                        @elseif($quotation->status == 'declined')
+                                            <form method="POST" action="{{ route('quotation.accept', $quotation->id) }}">
+                                                @csrf
+                                                <button type="submit" class="rounded bg-warning px-2 py-1 pb-[5px] pt-[6px] text-white">Accept</button>
+                                            </form>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

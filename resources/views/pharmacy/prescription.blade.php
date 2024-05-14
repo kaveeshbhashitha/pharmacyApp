@@ -14,7 +14,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg my-2">
                 <div class="p-2 lg:p-2 bg-white border-b border-gray-200">
                     <div class="quotation">
-                        <a href="{{ route('addQuotation') }}" class="abutton">Test</a>
+                        <a href="#" class="abutton">Hi {{ Auth::user()->name }}</a>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                                     </div>
 
                                     <div class="d-flex">
-                                        <a href="{{ route('prescription.edit', $prescription->id) }}" class="rounded bg-primary text-white p-1 mx-1">Add</a>
+                                        <a href="{{ route('prescription.edit', $prescription->id) }}" class="rounded bg-primary text-white p-1 mx-1">Add Quotation</a>
                                         <form action="{{ route('prescription.destroy', $prescription->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')

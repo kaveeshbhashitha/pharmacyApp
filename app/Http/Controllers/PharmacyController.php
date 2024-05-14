@@ -20,15 +20,15 @@ class PharmacyController extends Controller
         return $prescription;
     }
 
-    public function acceptQuotation()
-    {
-        return view('pharmacy.accept');
-    }
+    // public function acceptQuotation()
+    // {
+    //     return view('pharmacy.accept');
+    // }
 
-    public function declineQuotation()
-    {
-        return view('pharmacy.declined');
-    }
+    // public function declineQuotation()
+    // {
+    //     return view('pharmacy.declined');
+    // }
 
     public function addQuotation()
     {

@@ -1,66 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bootstrap Div Division</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
+<x-pharmacy-layout>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @if(session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif 
+            @if(session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session()->get('error') }}
+                </div>
+            @endif
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="left-side">
-                <h2>Inserted Drugs</h2>
-                <textarea id="insertedDrugs" class="form-control text-left" rows="5" readonly>
-                Drug Name           Quantity            Price
-                ------------------------------------------------
-                </textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="right-side">
-                <h2>Add Drug</h2>
-                <form id="addDrugForm">
-                    <div class="form-group">
-                        <label for="drugName">Drug Name:</label>
-                        <input type="text" class="form-control" id="drugName" name="drugName">
+            @if ($quotation->isEmpty())
+                <p>No quotation found.</p>
+            @else
+                @foreach ($quotation as $quotation)
+                    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg mb-2">
+                        <div class="p-2 lg:p-2 bg-white border-b border-gray-200">
+                            <div class="p-1">
+                                <div class="d-flex p-2"><h4>Accepted at: </h4><h4 class="text-success"> {{$quotation->updated_at}}</h4></div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="">
+                                            <p class="mx-2 boldtext">Name</p>
+                                            <h4 class="mx-2">{{ $quotation->pname }}</h4>
+                                            <p class="mx-2 boldtext">Email</p>
+                                            <h4 class="mx-2">{{ $quotation->pemail }}</h4>
+                                        </div>
+                                        
+                                        <div class="mx-3 direction">
+                                            <p class="boldtext">Drug data</p>
+                                            @php
+                                                $descriptions = explode('|', $quotation->description);
+                                            @endphp
+                                            @foreach ($descriptions as $description)
+                                                <h4 class="my-1">{{ $description }}</h4>
+                                            @endforeach
+                                        </div>
+
+                                        <div class="mx-3 direction">
+                                            <p class="boldtext">Price for drugs</p>
+                                            <p class="text-success">{{ $quotation->total }}</p>
+                                        </div>
+
+                                    <div class="d-flex">
+                                        <form action="{{ route('quotation.destroy', $quotation->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="rounded bg-secondary px-2 py-1 pb-[5px] pt-[6px] text-white mx-1">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="quantity">Quantity:</label>
-                        <input type="number" class="form-control" id="quantity" name="quantity">
-                    </div>
-                    <button type="button" class="btn btn-primary" id="addDrugBtn">Add Drug</button>
-                </form>
-            </div>
+                @endforeach
+            @endif
         </div>
     </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        // Handle adding drug
-        $('#addDrugBtn').click(function() {
-            var drugName = $('#drugName').val();
-            var quantity = $('#quantity').val();
-            var drugData = drugName + ' - ' + quantity;
-            
-            // Append drug data to the textarea
-            $('#insertedDrugs').val(function(_, val) {
-                return val + drugData + '\n';
-            });
-
-            // Reset form fields
-            $('#drugName').val('');
-            $('#quantity').val('');
-        });
-    });
-</script>
-
-</body>
-</html>
+</x-pharmacy-layout>
