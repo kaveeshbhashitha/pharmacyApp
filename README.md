@@ -133,4 +133,4 @@ INSERT INTO drugs (drugname, priceperone, quontity) VALUES
 php artisan serve
 ```
 ### Email for quotation
-[![Alt Text]()](https://example.com/link)
+[![Alt Text](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/email.png)](![link](https://github.com/kaveeshbhashitha/pharmacyApp/blob/main/public/images/email.png))
