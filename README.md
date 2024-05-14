@@ -87,9 +87,39 @@ npm run dev
 php artisan migrate
 ```
 <p>Otherwise export database file to mysql database.</p>
-<p>If you RUN the migrations and created tables using artisan commands, you must update the user role as  
+<p>If you RUN the migrations and created tables using artisan commands, you must update the user role as
 
-**pharmacist** 
+#### Run this script for import drug data into database
+```
+INSERT INTO drugs (drugname, priceperone, quantity) VALUES
+('Paracetamol', 2.5, 100),
+('Aspirin', 1.8, 80),
+('Ibuprofen', 3.2, 90),
+('Omeprazole', 5.5, 70),
+('Lisinopril', 4.0, 60),
+('Simvastatin', 6.3, 50),
+('Metformin', 3.8, 40),
+('Atorvastatin', 7.2, 30),
+('Levothyroxine', 2.0, 20),
+('Amoxicillin', 2.9, 10),
+('Prednisone', 4.5, 80),
+('Metoprolol', 3.6, 70),
+('Amlodipine', 5.8, 60),
+('Hydrochlorothiazide', 4.2, 50),
+('Albuterol', 6.7, 40),
+('Furosemide', 3.4, 30),
+('Hydrocodone', 7.1, 20),
+('Loratadine', 2.3, 10),
+('Montelukast', 3.9, 90),
+('Fluticasone', 5.6, 80),
+('Clopidogrel', 4.8, 70),
+('Cetirizine', 6.2, 60),
+('Escitalopram', 3.7, 50),
+('Azithromycin', 7.3, 40),
+('Tramadol', 4.1, 30);
+```
+
+**pharmacist** in user table related to pharmacist users.
 </p>
 
 #### Run Application
