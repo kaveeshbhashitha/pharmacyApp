@@ -66,7 +66,8 @@ User's password: kaveesh123
 2. Navigate to the project directory or open project with proper IDE
 3. Install dependencies (Composer dependencies, Node modules, livewire compenents)
 
-### Composer dependencies
+### Install dependencies
+#### Composer dependencies
 ```sh
 composer install
 ```
@@ -89,9 +90,14 @@ php artisan migrate
 <p>Otherwise export database file to mysql database.</p>
 <p>If you RUN the migrations and created tables using artisan commands, you must update the user role as
 
-#### Run this script for import drug data into database
+#### Run this script for import drug data into drugs table in database
+***Create database***
+```sh
+CREATE DATABASE pharmacyapp;
 ```
-INSERT INTO drugs (drugname, priceperone, quantity) VALUES
+
+```sh
+INSERT INTO drugs (drugname, priceperone, quontity) VALUES
 ('Paracetamol', 2.5, 100),
 ('Aspirin', 1.8, 80),
 ('Ibuprofen', 3.2, 90),
@@ -126,3 +132,5 @@ INSERT INTO drugs (drugname, priceperone, quantity) VALUES
 ```sh
 php artisan serve
 ```
+### Email for quotation
+[![Alt Text]()](https://example.com/link)

@@ -92,6 +92,9 @@
     $(document).ready(function() {
         var drugs = @json($drugs); // Convert the PHP array to JavaScript object
 
+        // Initialize total charge
+        var totalCharge = 0;
+
         // Handle adding drug
         $('#addDrugBtn').click(function() {
             var drugName = $('#drugName').val();
@@ -103,20 +106,21 @@
             if (selectedDrug) {
                 var pricePerOne = parseFloat(selectedDrug.priceperone);
 
-                // Calculate total charge
-                var totalCharge = pricePerOne * quantity;
+                // Calculate total charge for the current drug
+                var drugTotalCharge = pricePerOne * quantity;
+
+                // Add current drug charge to total charge
+                totalCharge += drugTotalCharge;
 
                 // Construct the drug details string
-                var drugDetails = `${drugName} : ${quantity} x ${pricePerOne} = $${totalCharge.toFixed(2)}\n`;
+                var drugDetails = `${drugName} : ${quantity} x ${pricePerOne} = $${drugTotalCharge.toFixed(2)}\n`;
 
                 // Update selected drugs textarea
                 var selectedDrugsText = $('#insertedDrugs').val();
                 $('#insertedDrugs').val(selectedDrugsText + drugDetails + '| ');
 
                 // Update total charge input
-                var currentTotalCharge = parseFloat($('#totalCharge').val().replace('$', '')) || 0;
-                var newTotalCharge = currentTotalCharge + totalCharge;
-                $('#totalCharge').val('Total charge = $' + newTotalCharge.toFixed(2));
+                $('#totalCharge').val('Total charge = $' + totalCharge.toFixed(2));
 
                 // Reset form fields
                 $('#quantity').val('');
