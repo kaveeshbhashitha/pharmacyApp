@@ -19,21 +19,27 @@
 
 ### Functionalities 
 #### User
-<p>Register as new user</p>
-<p>Login as exsisting user</p>
-<p>See user profile</p>
-<p>Change password and update profile</p>
-<p>Delete user account</p>
-<p>Upload prescription with Detils</p>
-<p>See received quotations</p>
-<p>Accept or decline quotation</p>
-<p>Receive an email about quotations</p>
+<p>1.Register as new user</p>
+<p>2.Login as exsisting user</p>
+<p>3.See user profile</p>
+<p>4.Change password and update profile</p>
+<p>5.Delete user account</p>
+<p>6.Upload prescription with Detils</p>
+<p>7.See received quotations</p>
+<p>8.Accept or decline quotation</p>
+<p>9.Receive an email about quotations</p>
 
 #### Pharmacist
-<p>Login as exsisting user</p>
-<p>See user profile</p>
-<p>Change password and update profile</p>
-<p>Delete user account</p>
+<p>1.Login as exsisting user</p>
+<p>2.See user profile</p>
+<p>3.Change password and update profile</p>
+<p>4.Delete pharmacist account</p>
+<p>5.See user prescriptions</p>
+<p>6.See given quotations</p>
+<p>7.See accepted quotations</p>
+<p>8.See declined quotations</p>
+<p>9.Add quotation for given user prescription</p>
+<p>10. Delete prescription/quotation</p>
 
 ## Learning Laravel
 
