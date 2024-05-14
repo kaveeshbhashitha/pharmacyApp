@@ -7,9 +7,6 @@ use App\Models\Prescription;
 
 class PharmacyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function pharmacyQuotation()
     {
         return view('pharmacy.prescription');
@@ -20,32 +17,16 @@ class PharmacyController extends Controller
         return $prescription;
     }
 
-    // public function acceptQuotation()
-    // {
-    //     return view('pharmacy.accept');
-    // }
-
-    // public function declineQuotation()
-    // {
-    //     return view('pharmacy.declined');
-    // }
-
     public function addQuotation()
     {
         return view('pharmacy.addquotation');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('dashboard');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         try {
@@ -100,78 +81,12 @@ class PharmacyController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $prescription = Prescription::findOrFail($id);
         return view('pharmacy.addquotation', compact('prescription'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        try {
-            $request->validate([
-                'title' => 'required|string|max:255',
-                'firstname' => 'required|string|max:255',
-                'lastname' => 'required|string|max:255',
-                'email' => 'required|string|max:255',
-                'code' => 'required|string|max:255',
-                'telephone' => 'required|string|max:255',
-                'department' => 'required|string|max:255',
-                'faculty' => 'required|string|max:255',
-                'university' => 'required|string|max:255',
-                'profileurl' => 'required|string|max:255',
-                'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
-            ]);
-    
-            $staff = Prescription::findOrFail($id);
-    
-            // Update employee data
-            $staff->title = $request->input('title');
-            $staff->firstname = $request->input('firstname');
-            $staff->lastname = $request->input('lastname');
-            $staff->email = $request->input('email');
-            $staff->code = $request->input('code');
-            $staff->telephone = $request->input('telephone');
-            $staff->department = $request->input('department');
-            $staff->faculty = $request->input('faculty');
-            $staff->university = $request->input('university');
-            $staff->profileurl = $request->input('profileurl');
-    
-            // Check if a new photo has been uploaded
-            if ($request->hasFile('image')) {
-                $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $path = $request->file('image')->storeAs('img', $fileName, 'public');
-                $staff->image = '/storage/' . $path;
-            }
-    
-            // Save the changes to the database
-            $staff->save();
-    
-            return redirect()->route('adminpeoplestaff')->with('success', 'Staff updated successfully');
-        } 
-        catch (\Exception $e) 
-        {
-            return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
-        }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $staff = Prescription::findOrFail($id);

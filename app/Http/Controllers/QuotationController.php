@@ -41,24 +41,17 @@ class QuotationController extends Controller
         return view('user.quotation', compact('quotations'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('pharmacy.addquotation');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         try {
             $requestdata = $request->all();
             Quotation::create($requestdata);
     
-            // Call sendEmail function after successfully inserting data
             $this->sendEmail($request);
     
             return redirect()->route('pharmacyQuotation')->with('success', 'Quotation added successfully');
@@ -108,33 +101,7 @@ class QuotationController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+    //Delete quotation
     public function destroy(string $id)
     {
         $quotation = Quotation::findOrFail($id);
@@ -143,6 +110,7 @@ class QuotationController extends Controller
         return redirect()->route('seeIssedQuotation')->with('success', 'Quotation deleted successfully');
     }
 
+    //accept quotation
     public function accept($id)
     {
         $quotation = Quotation::findOrFail($id);
@@ -152,6 +120,7 @@ class QuotationController extends Controller
         return redirect()->route('userQuotation')->with('success', 'Quotation accepted to deliver successfully');
     }
 
+    //decline quotation
     public function decline($id)
     {
         $quotation = Quotation::findOrFail($id);
