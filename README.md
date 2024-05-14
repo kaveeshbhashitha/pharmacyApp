@@ -17,7 +17,7 @@ This is a simple solution for medical prescription upload with two user levels: 
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
 - [Setup](#setup)
--[Images](#system-images-examples-for-uis)
+- [Images](#system-images-examples-for-uis)
 
 ## Features
 
