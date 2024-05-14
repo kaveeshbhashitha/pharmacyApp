@@ -1,7 +1,7 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="public/icons/pharmacy.gif" width="400" alt="Company logo"></a></p>
 
 <p align="center">
-<p>User</p><p> | </p><p>Pharmacist</p>
+    User | Pharmacist
 </p>
 
 <h1 align="center">PHP Practical Exam</h1>
